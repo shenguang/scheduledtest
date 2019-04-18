@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 定义log文件的目录 -->
+	<property name="LOG_HOME" value="/soft/springboot/log"/>
+	<!-- 定义服务的名字 -->
+	<property name="SERVER_NAME" value="boot"/>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!-- %.-1level 只显示信息级别的首字母,%-5level 左对齐显示信息级别全称 -->
+			<pattern>[lf-1][${SERVER_NAME}][%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][%thread][%file:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="TRACE_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/${SERVER_NAME}/trace.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/${SERVER_NAME}/trace/%d{yyyy-MM-dd}/trace.%i.log.zip</fileNamePattern>
+			<maxFileSize>10MB</maxFileSize>
+			<maxHistory>7</maxHistory>
+			<totalSizeCap>20GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[lf-1][${SERVER_NAME}][%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][%thread][%file:%line] - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>TRACE</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/${SERVER_NAME}/debug.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/${SERVER_NAME}/debug/%d{yyyy-MM-dd}/debug.%i.log.zip</fileNamePattern>
+			<maxFileSize>10MB</maxFileSize>
+			<maxHistory>7</maxHistory>
+			<totalSizeCap>20GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[lf-1][${SERVER_NAME}][%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][%thread][%file:%line] - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/${SERVER_NAME}/info.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/${SERVER_NAME}/info/%d{yyyy-MM-dd}/info.%i.log.zip</fileNamePattern>
+			<maxFileSize>10MB</maxFileSize>
+			<maxHistory>7</maxHistory>
+			<totalSizeCap>20GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[lf-1][${SERVER_NAME}][%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][%thread][%file:%line] - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<appender name="WARN_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/${SERVER_NAME}/warn.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/${SERVER_NAME}/warn/%d{yyyy-MM-dd}/warn.%i.log.zip</fileNamePattern>
+			<maxFileSize>10MB</maxFileSize>
+			<maxHistory>7</maxHistory>
+			<totalSizeCap>20GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[lf-1][${SERVER_NAME}][%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][%thread][%file:%line] - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/${SERVER_NAME}/error.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/${SERVER_NAME}/error/%d{yyyy-MM-dd}/error.%i.log.zip</fileNamePattern>
+			<maxFileSize>10MB</maxFileSize>
+			<maxHistory>7</maxHistory>
+			<totalSizeCap>20GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[lf-1][${SERVER_NAME}][%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][%thread][%file:%line] - %msg%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+	<!--
+        <appender name="ALL_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_HOME}/${SERVER_NAME}/all.log</file>
+            <append>true</append>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_HOME}/${SERVER_NAME}/all/%d{yyyy-MM-dd}/all.%i.log.zip</fileNamePattern>
+                <maxFileSize>10MB</maxFileSize>
+                <maxHistory>7</maxHistory>
+                <totalSizeCap>50GB</totalSizeCap>
+            </rollingPolicy>
+            <encoder>
+                <pattern>[%date{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger:%line] &#45;&#45;%mdc{client} %msg%n</pattern>
+            </encoder>
+        </appender>
+    -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<!--<appender-ref ref="TRACE_FILE" />-->
+		<!--<appender-ref ref="DEBUG_FILE" />-->
+		<appender-ref ref="INFO_FILE" />
+		<appender-ref ref="WARN_FILE" />
+		<appender-ref ref="ERROR_FILE" />
+		<!--<appender-ref ref="ALL_FILE" />-->
+	</root>
+	<!--特定包/类的日志级别-->
+	<!--  以下为打印mybatis日志，只需要写dao接口所在的包-->
+	<logger name="org.niugang.user.dao" level="DEBUG"></logger>
+	<logger name="org.niugang.dept.dao" level="DEBUG"></logger>
+</configuration>
